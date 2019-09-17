@@ -9,3 +9,8 @@
 .cxx
 Pods/
 build/
+Docs
+xcuserdata
+fastlane/*.xml
+fastlane/test_output
+subtrees.sh
