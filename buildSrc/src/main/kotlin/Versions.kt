@@ -12,40 +12,50 @@ import org.gradle.plugin.use.PluginDependencySpec
  * YOU are responsible for updating manually the dependency version.
  */
 object Versions {
-  const val appcompat: String = "1.0.2" // available: "1.1.0"
+    const val org_jetbrains_kotlin: String = "1.3.61"
 
-  const val constraintlayout: String = "1.1.3"
+    const val io_ktor: String = "1.3.1"
 
-  const val core_ktx: String = "1.0.2" // available: "1.1.0"
+    const val com_android_tools_build_gradle: String = "3.5.3"
 
-  const val espresso_core: String = "3.1.1" // available: "3.2.0"
+    const val androidx_test_runner: String = "1.2.0"
 
-  const val androidx_test_runner: String = "1.1.1" // available: "1.2.0"
+    const val de_fayard_buildsrcversions_gradle_plugin: String = "0.7.0"
 
-  const val aapt2: String = "3.5.0-5435860"
+    const val kotlinx_serialization_runtime_common: String = "0.14.0"
 
-  const val com_android_tools_build_gradle: String = "3.5.0"
+    const val kotlinx_serialization_runtime_native: String = "0.13.0"
 
-  const val lint_gradle: String = "26.5.0"
+    const val kotlinx_coroutines_core_common: String = "1.3.3"
 
-  const val de_fayard_buildsrcversions_gradle_plugin: String = "0.4.2" // available: "0.5.0"
+    const val kotlinx_coroutines_core_native: String = "1.3.1"
 
-  const val io_ktor: String = "1.2.4"
+    const val kotlinx_serialization_runtime: String = "0.14.0"
 
-  const val junit: String = "4.12"
+    const val kotlinx_coroutines_android: String = "1.3.3"
 
-  const val org_jetbrains_kotlin: String = "1.3.50"
+    const val kotlinx_coroutines_test: String = "1.3.3"
 
-  const val org_jetbrains_kotlinx: String = "1.3.1"
+    const val constraintlayout: String = "1.1.3"
 
-  /**
-   *
-   * See issue 19: How to update Gradle itself?
-   * https://github.com/jmfayard/buildSrcVersions/issues/19
-   */
-  const val gradleLatestVersion: String = "5.6.2"
+    const val espresso_core: String = "3.2.0"
 
-  const val gradleCurrentVersion: String = "5.4.1"
+    const val lint_gradle: String = "26.5.3"
+
+    const val appcompat: String = "1.1.0"
+
+    const val core_ktx: String = "1.2.0"
+
+    const val aapt2: String = "3.5.3-5435860"
+
+    const val junit: String = "4.13"
+
+    /**
+     * Current version: "5.4.1"
+     * See issue 19: How to update Gradle itself?
+     * https://github.com/jmfayard/buildSrcVersions/issues/19
+     */
+    const val gradleLatestVersion: String = "6.1.1"
 }
 
 /**
@@ -53,5 +63,5 @@ object Versions {
  * https://github.com/jmfayard/buildSrcVersions/issues/47
  */
 val PluginDependenciesSpec.buildSrcVersions: PluginDependencySpec
-  inline get() =
-      id("de.fayard.buildSrcVersions").version(Versions.de_fayard_buildsrcversions_gradle_plugin)
+    inline get() =
+            id("de.fayard.buildSrcVersions").version(Versions.de_fayard_buildsrcversions_gradle_plugin)

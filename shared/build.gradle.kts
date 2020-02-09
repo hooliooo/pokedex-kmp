@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+    id("kotlinx-serialization")
 }
 
 kotlin {
@@ -21,23 +22,59 @@ kotlin {
         }
     }
 
+
     jvm("android")
 
-    sourceSets["commonMain"].dependencies {
-        implementation(Libs.kotlin_stdlib_common)
-        implementation(Libs.ktor_client_core)
-        implementation(Libs.kotlinx_coroutines_core_common)
-    }
+    sourceSets {
+        all {
+            languageSettings.useExperimentalAnnotation("kotlinx.serialization.UnstableDefault")
+        }
+        val commonMain by getting {
+            dependencies {
+                implementation(Libs.kotlin_stdlib_common)
+                implementation(Libs.ktor_client_core)
+                implementation(Libs.ktor_client_json)
+                implementation(Libs.ktor_client_serialization)
+                implementation(Libs.kotlinx_coroutines_core_common)
+                implementation(Libs.kotlinx_serialization_runtime_common)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
+        named("androidMain") {
+            dependencies {
+                implementation(Libs.kotlin_stdlib)
+                implementation(Libs.ktor_client_android)
+                implementation(Libs.ktor_client_okhttp)
+                implementation(Libs.ktor_client_json_jvm)
+                implementation(Libs.ktor_client_serialization_jvm)
+                implementation(Libs.kotlinx_coroutines_android)
+                implementation(Libs.kotlinx_serialization_runtime)
+            }
+        }
 
-    sourceSets["androidMain"].dependencies {
-        implementation(Libs.kotlin_stdlib)
-        implementation(Libs.ktor_client_android)
-        implementation(Libs.kotlinx_coroutines_android)
-    }
+        named("androidTest") {
+            dependencies {
+                implementation(Libs.kotlin_test)
+                implementation(Libs.kotlin_test_junit)
+                implementation(Libs.kotlinx_coroutines_test)
+            }
+        }
 
-    sourceSets["iosMain"].dependencies {
-        implementation(Libs.ktor_client_ios)
-        implementation(Libs.kotlinx_coroutines_core_native)
+        named("iosMain") {
+            dependencies {
+                implementation(Libs.ktor_client_ios)
+                implementation(Libs.ktor_client_core_native)
+                implementation(Libs.ktor_client_json_native)
+                implementation(Libs.ktor_client_serialization_native)
+                implementation(Libs.kotlinx_coroutines_core_native)
+                implementation(Libs.kotlinx_serialization_runtime_native)
+            }
+        }
     }
 }
 
